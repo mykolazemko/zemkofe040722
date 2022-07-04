@@ -1,6 +1,6 @@
 import { time } from "console";
 import { copyFileSync } from "fs";
-import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal, useState, useEffect } from "react";
+import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal, useState, useEffect, Key } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateChart } from "../Redux/ChartSlice";
 import { RootState } from "../Redux/store";
@@ -26,11 +26,10 @@ export const TimeCountPage = () => {
   return (
     <div>
       {timeChart != undefined &&
-        timeChart.chart.map((ch: any) => {
-          return <div>{ch.time}</div>;
+        timeChart.chart.map((ch: any, index: Key | null | undefined) => {
+          return <div key={index}>{ch.time}</div>;
         })}
       <button onClick={handleClick}>Update time</button>
     </div>
   );
 };
-// (Math.random() *10).toFixed(1)
